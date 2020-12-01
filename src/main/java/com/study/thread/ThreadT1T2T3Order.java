@@ -19,13 +19,29 @@ public class ThreadT1T2T3Order {
         ThreadJoinTest t1 = new ThreadJoinTest("哈哈");
         ThreadJoinTest t2 = new ThreadJoinTest("嘎嘎");
         ThreadJoinTest t3 = new ThreadJoinTest("呵呵");
-
+        // 通过join()方法来保证T1、T2、T3的顺序
         t1.start();
         t1.join();
         t2.start();
         t2.join();
         t3.start();
         t3.join();
+
+        /**
+         * 输入结果：
+         * 哈哈:0
+         * 哈哈:1
+         * 哈哈:2
+         * 哈哈:3
+         * 嘎嘎:0
+         * 嘎嘎:1
+         * 嘎嘎:2
+         * 嘎嘎:3
+         * 呵呵:0
+         * 呵呵:1
+         * 呵呵:2
+         * 呵呵:3
+         */
 
     }
 
@@ -49,7 +65,7 @@ public class ThreadT1T2T3Order {
          */
         @Override
         public void run() {
-            for (int i=0;i<6;i++){
+            for (int i=0;i<4;i++){
                 System.out.println(this.getName()+":"+i);
             }
         }
